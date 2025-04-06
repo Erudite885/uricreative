@@ -43,21 +43,19 @@ export default function SentimentChart({ data }: SentimentChartProps) {
             data: sentiments,
             color: "#1976d2",
             showMark: true,
-            highlightScope: {
-              highlighted: "item",
-              faded: "global",
-            },
-            highlightedMarkStyle: ({ index }) => {
-              if (index === minIndex) return { fill: "red", r: 6 };
-              if (index === maxIndex) return { fill: "green", r: 6 };
-              return { r: 3 };
-            },
           },
         ]}
         height={300}
-        interaction={{
-          zoom: true,
-          pan: true,
+        slots={{
+          mark: ({ x, y, index }: any) => {
+            if (index === minIndex) {
+              return <circle cx={x} cy={y} r={6} fill="red" />;
+            }
+            if (index === maxIndex) {
+              return <circle cx={x} cy={y} r={6} fill="green" />;
+            }
+            return <circle cx={x} cy={y} r={3} fill="#1976d2" />;
+          },
         }}
       />
     </Box>

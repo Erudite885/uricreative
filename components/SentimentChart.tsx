@@ -1,3 +1,4 @@
+/ components/SentimentChart.tsx
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Box } from "@mui/material";
 import { useMemo } from "react";
@@ -26,23 +27,13 @@ export default function SentimentChart({ data }: SentimentChartProps) {
     return { dates, sentiments, minIndex, maxIndex };
   }, [data]);
 
-  // Create an array for marker sizes
-  const markerSizes = sentiments.map((_, index) => 
-    index === minIndex || index === maxIndex ? 6 : 0
-  );
-
-  // Create custom colors for the markers
-  const markerColors = sentiments.map((_, index) => 
-    index === minIndex ? "red" : index === maxIndex ? "green" : "#1976d2"
-  );
-
   return (
     <Box
       sx={{
         width: "100%",
         maxWidth: "100%",
         height: { xs: 300, sm: 400 },
-        overflowX: "auto",
+        overflowX: "auto", // Just in case x-axis labels overflow
       }}
     >
       <LineChart
@@ -51,18 +42,15 @@ export default function SentimentChart({ data }: SentimentChartProps) {
           {
             data: sentiments,
             color: "#1976d2",
-            valueFormatter: (value, context) => {
-              // This is primarily for tooltips
-              return `${value.toFixed(1)}`;
-            },
-            // Using marker configuration instead of callback functions
-            marker: {
-              size: markerSizes,
-              color: markerColors,
-            },
+            showMark: true,
             highlightScope: {
               highlighted: "item",
               faded: "global",
+            },
+            highlightedMarkStyle: ({ index }) => {
+              if (index === minIndex) return { fill: "red", r: 6 };
+              if (index === maxIndex) return { fill: "green", r: 6 };
+              return { r: 3 };
             },
           },
         ]}

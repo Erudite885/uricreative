@@ -7,6 +7,7 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  ZoomPanController,
 } from "@mui/x-charts";
 
 interface SentimentChartProps {
@@ -26,6 +27,7 @@ export const SentimentChart: React.FC<SentimentChartProps> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart data={chartData}>
+        <ZoomPanController />
         <CartesianGrid stroke="#f5f5f5" />
         <XAxis
           dataKey="x"

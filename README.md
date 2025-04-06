@@ -19,12 +19,12 @@ This Next.js application provides sentiment trend visualization for social media
 ### Desktop Views
 | Dark Mode | Light Mode |
 |-----------|------------|
-| ![Desktop Dark Mode](./public/screenshots/desktop-dark.png) | ![Desktop Light Mode](./public/screenshots/desktop-light.png) |
+| ![Desktop Dark Mode](./public/desktop-dark.png) | ![Desktop Light Mode](./public/desktop-light.png) |
 
 ### Tablet Views
 | Dark Mode | Light Mode |
 |-----------|------------|
-| ![Tablet Dark Mode](./public/screenshots/tablet-dark.png) | ![Tablet Light Mode](./public/screenshots/tablet-light.png) |
+| ![Tablet Dark Mode](./public/tab-dark.png) | ![Tablet Light Mode](./public/tab-light.png) |
 
 ### Mobile Views
 | Dark Mode | Light Mode |

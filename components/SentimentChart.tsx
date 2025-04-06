@@ -1,4 +1,4 @@
-/ components/SentimentChart.tsx
+// components/SentimentChart.tsx
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Box } from "@mui/material";
 import { useMemo } from "react";

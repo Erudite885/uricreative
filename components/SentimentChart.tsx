@@ -13,18 +13,10 @@ interface SentimentChartProps {
 }
 
 export default function SentimentChart({ data }: SentimentChartProps) {
-  // Memoized values for performance
-  const { dates, sentiments, minIndex, maxIndex } = useMemo(() => {
+  const { dates, sentiments } = useMemo(() => {
     const sentiments = data.map((d) => d.sentiment);
     const dates = data.map((d) => d.date);
-
-    const minSentiment = Math.min(...sentiments);
-    const maxSentiment = Math.max(...sentiments);
-
-    const minIndex = sentiments.indexOf(minSentiment);
-    const maxIndex = sentiments.indexOf(maxSentiment);
-
-    return { dates, sentiments, minIndex, maxIndex };
+    return { dates, sentiments };
   }, [data]);
 
   return (
@@ -33,7 +25,7 @@ export default function SentimentChart({ data }: SentimentChartProps) {
         width: "100%",
         maxWidth: "100%",
         height: { xs: 300, sm: 400 },
-        overflowX: "auto", // Just in case x-axis labels overflow
+        overflowX: "auto",
       }}
     >
       <LineChart
@@ -43,15 +35,6 @@ export default function SentimentChart({ data }: SentimentChartProps) {
             data: sentiments,
             color: "#1976d2",
             showMark: true,
-            highlightScope: {
-              highlighted: "item",
-              faded: "global",
-            },
-            highlightedMarkStyle: ({ index }) => {
-              if (index === minIndex) return { fill: "red", r: 6 };
-              if (index === maxIndex) return { fill: "green", r: 6 };
-              return { r: 3 };
-            },
           },
         ]}
         height={300}

@@ -55,13 +55,13 @@ export default function SentimentChart({ data }: SentimentChartProps) {
               highlighted: "item",
               faded: "global",
             },
-            highlightedMarkStyle: ({ index }) => {
+            highlightedMarkStyle: ({ index }: { index: number }) => {
               if (index === minIndex) return { fill: "red", r: 6 };
               if (index === maxIndex) return { fill: "green", r: 6 };
-              return { r: 3 };
+              return { r: 3 }; // Default radius for other points
             },
           },
-        ]}
+        ] as any}  
         height={300}
         interaction={{
           zoom: true,

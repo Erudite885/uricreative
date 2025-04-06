@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CssBaseline } from "@mui/material";
 import '../styles/globals.css'; // If you're using a global stylesheet
+import { ThemeModeProvider } from "../context/ThemeContext";
 
 
 export const metadata: Metadata = {
@@ -14,9 +15,11 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </QueryClientProvider>
+    <ThemeModeProvider>
+      <QueryClientProvider client={queryClient}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </QueryClientProvider>
+    </ThemeModeProvider>
   );
 }

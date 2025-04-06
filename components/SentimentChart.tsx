@@ -26,6 +26,16 @@ export default function SentimentChart({ data }: SentimentChartProps) {
     return { dates, sentiments, minIndex, maxIndex };
   }, [data]);
 
+  // Create an array for marker sizes
+  const markerSizes = sentiments.map((_, index) => 
+    index === minIndex || index === maxIndex ? 6 : 0
+  );
+
+  // Create custom colors for the markers
+  const markerColors = sentiments.map((_, index) => 
+    index === minIndex ? "red" : index === maxIndex ? "green" : "#1976d2"
+  );
+
   return (
     <Box
       sx={{
@@ -41,13 +51,14 @@ export default function SentimentChart({ data }: SentimentChartProps) {
           {
             data: sentiments,
             color: "#1976d2",
-            showMark: ({ index }) => index === minIndex || index === maxIndex,
-            pointStyle: (props) => {
-              const { index } = props;
-              return {
-                fill: index === minIndex ? "red" : index === maxIndex ? "green" : "#1976d2",
-                r: index === minIndex || index === maxIndex ? 6 : 3,
-              };
+            valueFormatter: (value, context) => {
+              // This is primarily for tooltips
+              return `${value.toFixed(1)}`;
+            },
+            // Using marker configuration instead of callback functions
+            marker: {
+              size: markerSizes,
+              color: markerColors,
             },
             highlightScope: {
               highlighted: "item",

@@ -29,7 +29,7 @@ This Next.js application provides sentiment trend visualization for social media
 ### Mobile Views
 | Dark Mode | Light Mode |
 |-----------|------------|
-| ![Mobile Dark Mode](./public/screenshots/mobile-dark.png) | ![Mobile Light Mode](./public/screenshots/mobile-light.png) |
+| ![Mobile Dark Mode](./public/mobile-dark.png) | ![Mobile Light Mode](./public/mobile-light.png) |
 
 ## Technical Implementation
 

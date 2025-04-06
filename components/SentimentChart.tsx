@@ -42,14 +42,10 @@ export default function SentimentChart({ data }: SentimentChartProps) {
           {
             data: sentiments,
             color: "#1976d2",
-            showMark: ({ index }) => ({
-              fill: index === minIndex 
-                ? "red" 
-                : index === maxIndex 
-                ? "green" 
-                : "#1976d2",
-              stroke: "none",
-              size: index === minIndex || index === maxIndex ? 6 : 3,
+            showMark: ({ index }) => index === minIndex || index === maxIndex,
+            markHighlight: ({ index }) => ({
+              color: index === minIndex ? "red" : "green",
+              size: 6,
             }),
             highlightScope: {
               highlighted: "item",

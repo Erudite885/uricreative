@@ -11,6 +11,10 @@ interface TrendPoint {
 interface SentimentChartProps {
   data: TrendPoint[];
 }
+interface LineSeriesType {
+  // other properties...
+  highlightedMarkStyle?: (args: { index: number }) => { fill: string; r: number };
+}
 
 export default function SentimentChart({ data }: SentimentChartProps) {
   // Memoized values for performance

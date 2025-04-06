@@ -1,5 +1,5 @@
 // components/SentimentChart.tsx
-import { LineChart } from "@mui/x-charts/LineChart";
+import { LineChart, Zoom } from "@mui/x-charts/LineChart";
 import { Box } from "@mui/material";
 import { useMemo } from "react";
 
@@ -36,28 +36,32 @@ export default function SentimentChart({ data }: SentimentChartProps) {
         overflowX: "auto", // Just in case x-axis labels overflow
       }}
     >
-      <LineChart
-        xAxis={[{ scaleType: "point", data: dates }]}
-        series={[
-          {
-            data: sentiments,
-            color: "#1976d2",
-            showMark: true,
-          },
-        ]}
-        height={300}
-        slots={{
-          mark: ({ x, y, index }: any) => {
-            if (index === minIndex) {
-              return <circle cx={x} cy={y} r={6} fill="red" />;
-            }
-            if (index === maxIndex) {
-              return <circle cx={x} cy={y} r={6} fill="green" />;
-            }
-            return <circle cx={x} cy={y} r={3} fill="#1976d2" />;
-          },
-        }}
-      />
+      <Zoom>
+        <LineChart
+          xAxis={[{ scaleType: "point", data: dates }]}
+          series={[
+            {
+              data: sentiments,
+              color: "#1976d2",
+              showMark: true,
+            },
+          ]}
+          height={300}
+          margin={{ top: 20, bottom: 40, left: 40, right: 20 }}
+          grid={{ vertical: true, horizontal: true }}
+          slots={{
+            mark: ({ x, y, index }: any) => {
+              if (index === minIndex) {
+                return <circle cx={x} cy={y} r={6} fill="red" />;
+              }
+              if (index === maxIndex) {
+                return <circle cx={x} cy={y} r={6} fill="green" />;
+              }
+              return <circle cx={x} cy={y} r={3} fill="#1976d2" />;
+            },
+          }}
+        />
+      </Zoom>
     </Box>
   );
 }

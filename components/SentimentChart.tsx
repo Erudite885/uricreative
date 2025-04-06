@@ -1,5 +1,5 @@
 // components/SentimentChart.tsx
-import { LineChart, Zoom } from "@mui/x-charts/LineChart";
+import { LineChart } from "@mui/x-charts/LineChart";
 import { Box } from "@mui/material";
 import { useMemo } from "react";
 
@@ -33,35 +33,43 @@ export default function SentimentChart({ data }: SentimentChartProps) {
         width: "100%",
         maxWidth: "100%",
         height: { xs: 300, sm: 400 },
-        overflowX: "auto", // Just in case x-axis labels overflow
+        overflowX: "auto",
       }}
     >
-      <Zoom>
-        <LineChart
-          xAxis={[{ scaleType: "point", data: dates }]}
-          series={[
-            {
-              data: sentiments,
-              color: "#1976d2",
-              showMark: true,
+      <LineChart
+        xAxis={[{ scaleType: "point", data: dates }]}
+        series={[
+          {
+            data: sentiments,
+            color: "#1976d2",
+            showMark: true,
+          },
+        ]}
+        height={300}
+        margin={{ top: 20, bottom: 40, left: 40, right: 20 }}
+        grid={{ vertical: true, horizontal: true }}
+        slots={{
+          mark: ({ x, y, index }: any) => {
+            if (index === minIndex) {
+              return <circle cx={x} cy={y} r={6} fill="red" />;
+            }
+            if (index === maxIndex) {
+              return <circle cx={x} cy={y} r={6} fill="green" />;
+            }
+            return <circle cx={x} cy={y} r={3} fill="#1976d2" />;
+          },
+        }}
+        // Enable zoom and pan interactions
+        slotProps={{
+          chart: {
+            sx: {
+              '& .MuiChartsAxis-tickLabel': {
+                fontSize: '0.75rem',
+              },
             },
-          ]}
-          height={300}
-          margin={{ top: 20, bottom: 40, left: 40, right: 20 }}
-          grid={{ vertical: true, horizontal: true }}
-          slots={{
-            mark: ({ x, y, index }: any) => {
-              if (index === minIndex) {
-                return <circle cx={x} cy={y} r={6} fill="red" />;
-              }
-              if (index === maxIndex) {
-                return <circle cx={x} cy={y} r={6} fill="green" />;
-              }
-              return <circle cx={x} cy={y} r={3} fill="#1976d2" />;
-            },
-          }}
-        />
-      </Zoom>
+          },
+        }}
+      />
     </Box>
   );
 }

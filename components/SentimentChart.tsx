@@ -1,4 +1,5 @@
 // components/SentimentChart.tsx
+// components/SentimentChart.tsx
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Box } from "@mui/material";
 import { useMemo } from "react";
@@ -34,10 +35,19 @@ export default function SentimentChart({ data }: SentimentChartProps) {
         maxWidth: "100%",
         height: { xs: 300, sm: 400 },
         overflowX: "auto",
+        '& .MuiChartsAxis-tickLabel': {
+          fontSize: '0.75rem',
+        },
       }}
     >
       <LineChart
-        xAxis={[{ scaleType: "point", data: dates }]}
+        xAxis={[{ 
+          scaleType: "point", 
+          data: dates,
+          tickLabelStyle: {
+            fontSize: '0.75rem',
+          },
+        }]}
         series={[
           {
             data: sentiments,
@@ -60,13 +70,14 @@ export default function SentimentChart({ data }: SentimentChartProps) {
           },
         }}
         // Enable zoom and pan interactions
-        slotProps={{
-          chart: {
-            sx: {
-              '& .MuiChartsAxis-tickLabel': {
-                fontSize: '0.75rem',
-              },
-            },
+        interaction={{
+          zoom: {
+            enabled: true,
+            mode: 'xy',
+          },
+          pan: {
+            enabled: true,
+            mode: 'xy',
           },
         }}
       />

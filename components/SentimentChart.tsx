@@ -1,4 +1,3 @@
-// components/SentimentChart.tsx
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Box } from "@mui/material";
 import { useMemo } from "react";
@@ -43,10 +42,13 @@ export default function SentimentChart({ data }: SentimentChartProps) {
             data: sentiments,
             color: "#1976d2",
             showMark: ({ index }) => index === minIndex || index === maxIndex,
-            markHighlight: ({ index }) => ({
-              color: index === minIndex ? "red" : "green",
-              size: 6,
-            }),
+            pointStyle: (props) => {
+              const { index } = props;
+              return {
+                fill: index === minIndex ? "red" : index === maxIndex ? "green" : "#1976d2",
+                r: index === minIndex || index === maxIndex ? 6 : 3,
+              };
+            },
             highlightScope: {
               highlighted: "item",
               faded: "global",

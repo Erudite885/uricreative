@@ -1,18 +1,49 @@
+// pages/insights/[hashtag].tsx
 import { useRouter } from "next/router";
+import {
+  Box,
+  CircularProgress,
+  Typography,
+  Button,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import { IconButton, useTheme } from "@mui/material";
+import { useThemeMode } from "../../context/ThemeContext";
 
-import { Box, CircularProgress, Typography, Button } from "@mui/material";
 import { useHashtagTrend } from "../../hooks/useHashtagTrend";
 import HashtagTrendCard from "../../components/HashtagTrendCard";
-import SentimentChart from "../../components/SentimentChart";
+// import SentimentChart from "../../components/SentimentChart";
+import dynamic from "next/dynamic";
+
+const SentimentChart = dynamic(
+  () => import("../../components/SentimentChart"),
+  {
+    ssr: false,
+    loading: () => <p>Loading chart...</p>,
+  }
+);
+
+const availableHashtags = ["uri", "nextjs", "react", "frontend"]; // Add more as needed
 
 export default function HashtagPage() {
-  const { isReady, query } = useRouter();
-
-   const hashtag = typeof query.hashtag === "string" ? query.hashtag : null;
+  const theme = useTheme();
+  const { toggleMode } = useThemeMode();
+  const router = useRouter();
+  const { isReady, query, push } = router;
+  const hashtag = typeof query.hashtag === "string" ? query.hashtag : null;
 
   const { data, isLoading, isError, refetch } = useHashtagTrend(hashtag || "");
 
-  
+  const handleChange = (event: any) => {
+    const newHashtag = event.target.value;
+    push(`/insights/${newHashtag}`);
+  };
+
   if (!isReady || !hashtag) {
     return (
       <Box p={4}>
@@ -39,6 +70,28 @@ export default function HashtagPage() {
 
   return (
     <Box p={2}>
+      <Box display="flex" justifyContent="flex-end" mb={2}>
+        <IconButton onClick={toggleMode}>
+          {theme.palette.mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+        </IconButton>
+      </Box>
+      {/* Dropdown to select hashtag */}
+      <FormControl fullWidth sx={{ mb: 2 }}>
+        <InputLabel id="hashtag-select-label">Select Hashtag</InputLabel>
+        <Select
+          labelId="hashtag-select-label"
+          value={hashtag}
+          label="Select Hashtag"
+          onChange={handleChange}
+        >
+          {availableHashtags.map((tag) => (
+            <MenuItem key={tag} value={tag}>
+              #{tag}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
       <HashtagTrendCard
         hashtag={data.hashtag}
         range={data.range}

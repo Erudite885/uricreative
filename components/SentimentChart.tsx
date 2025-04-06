@@ -11,9 +11,13 @@ interface TrendPoint {
 interface SentimentChartProps {
   data: TrendPoint[];
 }
+
 interface LineSeriesType {
-  // other properties...
+  // Define other properties for the series here, if needed
   highlightedMarkStyle?: (args: { index: number }) => { fill: string; r: number };
+  color?: string;
+  showMark?: boolean;
+  highlightScope?: { highlighted: "item"; faded: "global" };
 }
 
 export default function SentimentChart({ data }: SentimentChartProps) {

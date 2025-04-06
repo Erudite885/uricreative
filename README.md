@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hashtag Sentiment Insight Dashboard - README
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This Next.js application provides sentiment trend visualization for social media hashtags with a dynamic route `/insights/[hashtag]`. The dashboard features interactive charts, multiple view modes, and responsive layouts.
+
+## Features
+
+✅ Dynamic route handling for any hashtag  
+✅ Hashtag switcher dropdown  
+✅ Interactive line chart with min/max markers  
+✅ Light & dark mode support  
+✅ Responsive design (mobile, tablet, desktop)  
+✅ Loading and error states  
+✅ Performance optimizations  
+
+## Screenshots
+
+### Desktop Views
+| Dark Mode | Light Mode |
+|-----------|------------|
+| ![Desktop Dark Mode](./public/screenshots/desktop-dark.png) | ![Desktop Light Mode](./public/screenshots/desktop-light.png) |
+
+### Tablet Views
+| Dark Mode | Light Mode |
+|-----------|------------|
+| ![Tablet Dark Mode](./public/screenshots/tablet-dark.png) | ![Tablet Light Mode](./public/screenshots/tablet-light.png) |
+
+### Mobile Views
+| Dark Mode | Light Mode |
+|-----------|------------|
+| ![Mobile Dark Mode](./public/screenshots/mobile-dark.png) | ![Mobile Light Mode](./public/screenshots/mobile-light.png) |
+
+## Technical Implementation
+
+### Key Components
+
+1. **Hashtag Switcher**
+   - Dropdown with popular hashtags
+   - Client-side navigation between trends
+   - Persists in all viewports
+
+2. **Enhanced Sentiment Chart**
+   - Min/Max sentiment markers (dotted lines)
+   - Custom tooltips with date/sentiment values
+   - Responsive sizing
+
+3. **View Mode Toggle**
+   - System-preference detection
+   - Manual light/dark mode switch
+   - Theme-appropriate chart colors
+
+4. **Responsive Layout**
+   - Mobile: Stacked elements, larger touch targets
+   - Tablet: Adjusted spacing, medium-sized charts
+   - Desktop: Side-by-side components, detailed views
+
+## How to Run
 
 ```bash
+git clone [repository-url]
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live Demo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Deployed on Vercel:  
+[https://hashtag-sentiment.vercel.app](https://hashtag-sentiment.vercel.app)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Time Spent
 
-## Learn More
+Total: ~3 hours (including bonus features)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 45 mins: Base functionality
+- 1 hour: Bonus features implementation
+- 45 mins: Responsive design & testing
+- 30 mins: Documentation & deployment

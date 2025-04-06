@@ -1,18 +1,24 @@
-# Hashtag Sentiment Insight Dashboard - README
+# 📊 Hashtag Sentiment Insight Page — URI
 
-## Overview
+## 🚀 Overview
 
-This Next.js application provides sentiment trend visualization for social media hashtags with a dynamic route `/insights/[hashtag]`. The dashboard features interactive charts, multiple view modes, and responsive layouts.
+This project fulfills the task of building a dynamic hashtag sentiment insights page using **Next.js, TypeScript, React**, **Material UI**, **@mui/x-charts**, and **React Query** with a dynamic route `/insights/[hashtag]`. 
 
-## Features
+### Features Implemented
 
-✅ Dynamic route handling for any hashtag  
-✅ Hashtag switcher dropdown  
-✅ Interactive line chart with min/max markers  
-✅ Light & dark mode support  
-✅ Responsive design (mobile, tablet, desktop)  
-✅ Loading and error states  
-✅ Performance optimizations  
+- ✅ Dynamic route `/insights/[hashtag]`
+- ✅ Mock API endpoint at `/api/trends/[hashtag]`
+- ✅ Sentiment trend line with `@mui/x-charts/LineChart`
+- ✅ Trend direction indicator (📈 or 📉)
+- ✅ Responsive design (Mobile, Tablet, Desktop)
+- ✅ Light and Dark mode support
+- ✅ Dropdown to switch hashtags
+- ✅ Loading and error states
+- ✅ React performance optimizations:
+  - `React.memo`
+  - `useMemo`
+  - `useCallback`
+- ✅ Lazy-loaded chart with `next/dynamic`
 
 ## Screenshots
 

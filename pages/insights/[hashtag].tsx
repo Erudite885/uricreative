@@ -1,4 +1,5 @@
 // pages/insights/[hashtag].tsx
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import {
   Box,
@@ -13,12 +14,11 @@ import {
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { IconButton, useTheme } from "@mui/material";
-import { useThemeMode } from "../../context/ThemeContext";
 
+import { useThemeMode } from "../../context/ThemeContext";
 import { useHashtagTrend } from "../../hooks/useHashtagTrend";
 import HashtagTrendCard from "../../components/HashtagTrendCard";
 // import SentimentChart from "../../components/SentimentChart";
-import dynamic from "next/dynamic";
 
 const SentimentChart = dynamic(
   () => import("../../components/SentimentChart"),
@@ -62,14 +62,19 @@ export default function HashtagPage() {
     return (
       <Box p={4}>
         <Typography color="error">Error loading data.</Typography>
-        <Button variant="outlined" onClick={() => refetch()}>
-          Retry
-        </Button>
+        <Box display="flex" gap={2}>
+          <Button variant="outlined" onClick={() => router.back()}>
+            Go Back
+          </Button>
+          <Button variant="contained" onClick={() => refetch()}>
+            Retry
+          </Button>
+        </Box>
       </Box>
     );
 
   return (
-    <Box p={2}>
+    <Box sx={{ px: { xs: 2, sm: 4 }, pt: 2 }}>
       <Box display="flex" justifyContent="flex-end" mb={2}>
         <IconButton onClick={toggleMode}>
           {theme.palette.mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}

@@ -66,7 +66,7 @@ npm run dev
 ## Live Demo
 
 Deployed on Vercel:  
-[https://hashtag-sentiment.vercel.app](https://hashtag-sentiment.vercel.app)
+[Creative URI hashtag sentiment ](https://uricreative.vercel.app/insights/uri)
 
 ## Time Spent
 

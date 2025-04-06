@@ -12,14 +12,6 @@ interface SentimentChartProps {
   data: TrendPoint[];
 }
 
-interface LineSeriesType {
-  // Define other properties for the series here, if needed
-  highlightedMarkStyle?: (args: { index: number }) => { fill: string; r: number };
-  color?: string;
-  showMark?: boolean;
-  highlightScope?: { highlighted: "item"; faded: "global" };
-}
-
 export default function SentimentChart({ data }: SentimentChartProps) {
   // Memoized values for performance
   const { dates, sentiments, minIndex, maxIndex } = useMemo(() => {
@@ -55,13 +47,13 @@ export default function SentimentChart({ data }: SentimentChartProps) {
               highlighted: "item",
               faded: "global",
             },
-            highlightedMarkStyle: ({ index }: { index: number }) => {
+            highlightedMarkStyle: ({ index }) => {
               if (index === minIndex) return { fill: "red", r: 6 };
               if (index === maxIndex) return { fill: "green", r: 6 };
-              return { r: 3 }; // Default radius for other points
+              return { r: 3 };
             },
           },
-        ] as any}  
+        ]}
         height={300}
         interaction={{
           zoom: true,
